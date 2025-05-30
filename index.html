@@ -2,326 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Digitec Financial App - Your all-in-one financial management solution">
-  <title>Digitec Financial App | Transform Your Financial Future</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digitec Financial App</title>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 </head>
-<body class="light-mode">
+<body>
   <header class="header sticky">
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <img src="https://via.placeholder.com/40x40" alt="Digitec Logo" class="logo">
-        <h1>Digitec</h1>
-      </div>
-      
-      <div class="navbar-actions">
-        <button id="toggleDarkMode" class="icon-btn" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="icon-btn menu-toggle" aria-label="Menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-      
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#partners">Partners</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="menu-icon" onclick="showToast('Menu clicked')">☰</div>
+    <h1>Transform Your Finances with Digitec</h1>
+    <div class="settings-icon" onclick="showToast('Settings clicked')">⚙</div>
+    <button id="toggleDarkMode" title="Toggle dark mode">🌓</button>
   </header>
 
   <main class="container">
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Transform Your Financial Future</h2>
-        <p class="lead">All-in-one financial management solution that helps you budget, track, invest, and grow your wealth.</p>
-        <div class="cta-buttons">
-          <a href="#" class="btn btn-primary">Get Started</a>
-          <a href="#" class="btn btn-secondary">Learn More</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img src="https://via.placeholder.com/600x400" alt="Financial dashboard on mobile and desktop">
-      </div>
-    </section>
-
     <section class="greeting" data-animate>
-      <div class="section-header">
-        <h2>Welcome to Digitec</h2>
-        <p>Your gateway to leading financial solutions. Seamlessly manage all aspects of your financial life in one place.</p>
-      </div>
+      Welcome to Digitec - Your gateway to leading financial solutions. Seamlessly manage your accounts with Mint, track transactions easily with YNAB, control your budget using EveryDollar, grow your wealth via Empower, enjoy secure digital wallets with Revolut, and manage your assets efficiently through SoFi.
     </section>
 
-    <section class="dashboard" id="features">
-      <div class="section-header">
-        <h2>Financial Tools</h2>
-        <p>Comprehensive solutions for every aspect of your financial life</p>
-      </div>
-      
-      <div class="card-grid">
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-wallet"></i>
-          </div>
-          <h3>Account Management</h3>
-          <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" class="partner-logo" />
-          <p>Keep track of your balances effortlessly with <strong>Mint</strong>, the trusted platform for personal finance management.</p>
-          <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Sign Up Now <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-exchange-alt"></i>
-          </div>
-          <h3>Transaction Tracking</h3>
-          <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" class="partner-logo" />
-          <p>Track all your spending and income with <strong>YNAB (You Need A Budget)</strong>, giving you control over your money flow.</p>
-          <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Explore YNAB <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-chart-pie"></i>
-          </div>
-          <h3>Smart Budgeting</h3>
-          <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" class="partner-logo" />
-          <p>Create and manage your budget efficiently with <strong>EveryDollar</strong>, the simple budgeting tool designed for you.</p>
-          <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Start Budgeting <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Wealth Growth</h3>
-          <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" class="partner-logo" />
-          <p>Invest smarter with <strong>Empower</strong>, your digital wealth-building partner.</p>
-          <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Invest Now <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-money-bill-wave"></i>
-          </div>
-          <h3>Digital Wallets</h3>
-          <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" class="partner-logo" />
-          <p>Manage your money on the go with <strong>Revolut</strong>, offering secure and instant payment solutions.</p>
-          <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Use Revolut <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="card" data-animate>
-          <div class="card-icon">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h3>Asset Management</h3>
-          <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" class="partner-logo" />
-          <p>Take control of your financial assets with <strong>SoFi</strong>, the all-in-one finance app.</p>
-          <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            Manage Assets <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="partners-section" id="partners">
-      <div class="section-header">
-        <h2>Trusted Partners</h2>
-        <p>We collaborate with industry leaders to bring you the best financial tools</p>
-      </div>
-      
-      <div class="partners-grid">
-        <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" class="partner-logo" />
-        </a>
-        <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" class="partner-logo" />
-        </a>
-        <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" class="partner-logo" />
-        </a>
-        <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" class="partner-logo" />
-        </a>
-        <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" class="partner-logo" />
-        </a>
-        <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
-          <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" class="partner-logo" />
+    <section class="dashboard">
+      <div class="card" data-animate>
+        <h2>Manage Your Accounts</h2>
+        <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" />
+        <p>Keep track of your balances effortlessly with <strong>Mint</strong>, the trusted platform for personal finance management.</p>
+        <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer">
+          <button>Sign Up Now</button>
         </a>
       </div>
-    </section>
 
-    <section class="testimonials">
-      <div class="section-header">
-        <h2>What Our Users Say</h2>
-        <p>Trusted by thousands of users worldwide</p>
+      <div class="card" data-animate>
+        <h2>Stay Informed with Transactions</h2>
+        <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" />
+        <p>Track all your spending and income with <strong>YNAB (You Need A Budget)</strong>, giving you control over your money flow.</p>
+        <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer">
+          <button>Explore YNAB</button>
+        </a>
       </div>
-      
-      <div class="testimonial-carousel">
-        <div class="testimonial">
-          <div class="testimonial-content">
-            <p>"Digitec has completely transformed how I manage my finances. The all-in-one dashboard is a game changer!"</p>
-          </div>
-          <div class="testimonial-author">
-            <img src="https://via.placeholder.com/50x50" alt="Sarah J.">
-            <div>
-              <h4>Sarah J.</h4>
-              <p>Financial Analyst</p>
-            </div>
-          </div>
+
+      <div class="card" data-animate>
+        <h2>Budgeting Made Easy</h2>
+        <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" />
+        <p>Create and manage your budget efficiently with <strong>EveryDollar</strong>, the simple budgeting tool designed for you.</p>
+        <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer">
+          <button>Start Budgeting</button>
+        </a>
+      </div>
+
+      <div class="card" data-animate>
+        <h2>Grow Your Wealth</h2>
+        <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" />
+        <p>Invest smarter with <strong>Empower</strong>, your digital wealth-building partner.</p>
+        <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer">
+          <button>Invest Now</button>
+        </a>
+      </div>
+
+      <div class="card" data-animate>
+        <h2>Secure Digital Wallets</h2>
+        <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" />
+        <p>Manage your money on the go with <strong>Revolut</strong>, offering secure and instant payment solutions.</p>
+        <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">
+          <button>Use Revolut</button>
+        </a>
+      </div>
+
+      <div class="card" data-animate>
+        <h2>Financial Asset Management</h2>
+        <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" />
+        <p>Take control of your financial assets with <strong>SoFi</strong>, the all-in-one finance app.</p>
+        <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer">
+          <button>Manage Assets</button>
+        </a>
+      </div>
+
+      <!-- Partners card with logos and buttons -->
+      <div class="card partners-card" data-animate>
+        <h2>Our Partners</h2>
+        <div class="partners-logos">
+          <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" />
+          </a>
+          <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" />
+          </a>
+          <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" />
+          </a>
+          <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" />
+          </a>
+          <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" />
+          </a>
+          <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer">
+            <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" />
+          </a>
         </div>
-        
-        <div class="testimonial">
-          <div class="testimonial-content">
-            <p>"Finally a financial app that doesn't overwhelm me. The interface is clean and the features are exactly what I need."</p>
-          </div>
-          <div class="testimonial-author">
-            <img src="https://via.placeholder.com/50x50" alt="Michael T.">
-            <div>
-              <h4>Michael T.</h4>
-              <p>Small Business Owner</p>
-            </div>
-          </div>
+        <div class="partners-buttons">
+          <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer"><button>Mint</button></a>
+          <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer"><button>YNAB</button></a>
+          <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer"><button>EveryDollar</button></a>
+          <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer"><button>Empower</button></a>
+          <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer"><button>Revolut</button></a>
+          <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer"><button>SoFi</button></a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer" id="contact">
-    <div class="footer-content">
-      <div class="footer-section about" id="about">
-        <div class="footer-logo">
-          <img src="https://via.placeholder.com/40x40" alt="Digitec Logo">
-          <h3>Digitec</h3>
-        </div>
-        <p>Innovative financial solutions for a better tomorrow.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-section links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#partners">Partners</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section mission">
-        <h3>Our Mission</h3>
-        <p>To provide innovative financial solutions that are accessible, efficient, and secure.</p>
-        <h3>Our Vision</h3>
-        <p>Become a leader in the fintech space by focusing on innovation in technology, customer-centric approach, and value creation.</p>
-      </div>
-      
-      <div class="footer-section contact-form">
-        <h3>Contact Us</h3>
-        <form id="contactForm">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-group">
-            <textarea name="message" rows="3" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      </div>
+  <footer class="footer" data-animate>
+    <div>
+      <h2>Mission</h2>
+      <p>To provide innovative financial solutions that are accessible, efficient, and secure.</p>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Digitec Financial. All rights reserved.</p>
+    <div>
+      <h2>Vision</h2>
+      <p>Become a leader in the fintech space by focusing on innovation in technology, customer-centric approach, and value creation for our shareholders and employees.</p>
+    </div>
+    <div>
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="request" rows="4" placeholder="Request/Complaint/Comment" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </footer>
 
   <div id="toast" class="toast"></div>
 
   <script>
-    // Dark mode toggle with localStorage persistence
+    // Dark mode toggle
     const toggleDarkModeBtn = document.getElementById('toggleDarkMode');
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    
-    // Check for saved user preference or use system preference
-    const currentTheme = localStorage.getItem('theme') || 
-                       (prefersDarkScheme.matches ? 'dark' : 'light');
-    document.body.classList.add(currentTheme + '-mode');
-    updateDarkModeIcon(currentTheme);
-    
     toggleDarkModeBtn.addEventListener('click', () => {
-      const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
-      document.body.classList.remove('dark-mode', 'light-mode');
-      document.body.classList.add(newTheme + '-mode');
-      localStorage.setItem('theme', newTheme);
-      updateDarkModeIcon(newTheme);
+      document.body.classList.toggle('dark-mode');
     });
-    
-    function updateDarkModeIcon(theme) {
-      const icon = toggleDarkModeBtn.querySelector('i');
-      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
 
     // Toast notification function
-    function showToast(message, type = 'info') {
+    function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
-      toast.className = 'toast show ' + type;
+      toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
     }
 
-    // Form submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Here you would typically send the form data to a server
-      showToast('Thank you for your message! We will get back to you soon.', 'success');
-      this.reset();
-    });
-
-    // Mobile menu toggle
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-      document.querySelector('.nav-links').classList.toggle('active');
-      this.classList.toggle('active');
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // Scroll animations
+    // Scroll animations (basic)
     const animatedElements = document.querySelectorAll('[data-animate]');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
