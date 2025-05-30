@@ -26,7 +26,11 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     });
 });
 
-// Dark mode toggle with persistence
+// Default to dark mode on first visit
+if (localStorage.getItem('darkMode') === null) {
+  localStorage.setItem('darkMode', 'true');
+}
+
 const toggleButton = document.getElementById('toggleDarkMode');
 const isDark = localStorage.getItem('darkMode') === 'true';
 
