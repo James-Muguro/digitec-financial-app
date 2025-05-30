@@ -76,8 +76,7 @@ git push origin feature/your-feature-name
 
 ### 6. Open a Pull Request
 
-Submit a Pull Request (PR) to the `main` branch of the original repository. Please follow our [Contribution Guidelines](CONTRIBUTING.md) if available.
-
+Submit a Pull Request (PR) to the `main` branch of the original repository.
 ---
 
 ## 📜 License
