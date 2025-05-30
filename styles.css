@@ -22,7 +22,7 @@ body::before {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.4); /* subtle light overlay */
+  background: rgba(255, 255, 255, 0.4);
   z-index: -1;
   pointer-events: none;
   transition: background 0.3s ease;
@@ -35,7 +35,7 @@ body.dark-mode {
 }
 
 body.dark-mode::before {
-  background: rgba(0, 0, 0, 0.4); /* subtle dark overlay */
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* Container */
@@ -118,8 +118,13 @@ body.dark-mode::before {
 }
 
 .card img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 120px;
+  width: auto;
   height: auto;
+  display: block;
+  margin: 0 auto 15px auto;
+  object-fit: contain;
   border-radius: 5px;
 }
 
@@ -261,19 +266,23 @@ body.dark-mode .card.partners-card {
 
 .partners-logos a {
   display: inline-block;
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: white;
+  padding: 0;
 }
 
 .partners-logos a img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .partners-logos a:hover {
