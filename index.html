@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Digitec Financial App</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="header sticky">
@@ -21,41 +21,58 @@
     </section>
 
     <section class="dashboard">
-      <div class="card" onclick="showToast('Sign up now')" data-animate>
+      <div class="card" data-animate>
         <h2>Manage Your Accounts</h2>
-        <img src="https://www.arimetrics.com/wp-content/uploads/2020/01/account_manager-1.png" alt="Manage Accounts">
+        <img src="https://www.arimetrics.com/wp-content/uploads/2020/01/account_manager-1.png" alt="Manage Accounts" />
         <p>Keep track of your balances effortlessly.</p>
-        <button>Sign Up Now</button>
+        <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer">
+          <button>Sign Up Now</button>
+        </a>
       </div>
-      <div class="card" onclick="showToast('Get started')" data-animate>
+
+      <div class="card" data-animate>
         <h2>Stay Informed with Transactions</h2>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI-tQ4wxF4D6vmHVaaACcqZXiuII3D0z3mq7l_m78JPg&s" alt="Transactions">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI-tQ4wxF4D6vmHVaaACcqZXiuII3D0z3mq7l_m78JPg&s" alt="Transactions" />
         <p>Monitor your spending and earnings with ease.</p>
-        <button>Get Started</button>
+        <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer">
+          <button>Get Started</button>
+        </a>
       </div>
-      <div class="card" onclick="showToast('Learn more')" data-animate>
+
+      <div class="card" data-animate>
         <h2>Take Control of Your Budget</h2>
-        <img src="https://www.allbusiness.com/media-library/financial-and-budget-planning.jpg?id=32091701&width=1200&height=600&coordinates=0%2C140%2C0%2C141" alt="Budget">
+        <img src="https://www.allbusiness.com/media-library/financial-and-budget-planning.jpg?id=32091701&width=1200&height=600&coordinates=0%2C140%2C0%2C141" alt="Budget" />
         <p>Plan and manage your finances effectively.</p>
-        <button>Learn More</button>
+        <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer">
+          <button>Learn More</button>
+        </a>
       </div>
-      <div class="card" onclick="showToast('Explore now')" data-animate>
+
+      <div class="card" data-animate>
         <h2>Maximize Your Investments</h2>
-        <img src="https://iadsb.tmgrup.com.tr/8801f1/1200/627/0/10/1000/532?u=https://idsb.tmgrup.com.tr/2020/01/14/1579004252799.jpg" alt="Investments">
+        <img src="https://iadsb.tmgrup.com.tr/8801f1/1200/627/0/10/1000/532?u=https://idsb.tmgrup.com.tr/2020/01/14/1579004252799.jpg" alt="Investments" />
         <p>Grow your wealth with intelligent investment strategies.</p>
-        <button>Explore Now</button>
+        <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer">
+          <button>Explore Now</button>
+        </a>
       </div>
-      <div class="card" onclick="showToast('Discover now')" data-animate>
+
+      <div class="card" data-animate>
         <h2>Digital Wallets</h2>
-        <img src="https://youtapinsights.com/wp-content/uploads/2022/10/digitalwallet-e1667175316583.jpg" alt="Digital Wallets">
+        <img src="https://youtapinsights.com/wp-content/uploads/2022/10/digitalwallet-e1667175316583.jpg" alt="Digital Wallets" />
         <p>Convenient and secure digital wallet solutions.</p>
-        <button>Discover Now</button>
+        <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">
+          <button>Discover Now</button>
+        </a>
       </div>
-      <div class="card" onclick="showToast('Find out more')" data-animate>
+
+      <div class="card" data-animate>
         <h2>Asset Management</h2>
-        <img src="https://insite.ipwea.org/wp-content/uploads/2020/11/Story-44-Image-1.jpg" alt="Asset Management">
+        <img src="https://insite.ipwea.org/wp-content/uploads/2020/11/Story-44-Image-1.jpg" alt="Asset Management" />
         <p>Efficiently manage and grow your assets.</p>
-        <button>Find Out More</button>
+        <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer">
+          <button>Find Out More</button>
+        </a>
       </div>
     </section>
   </main>
@@ -72,8 +89,8 @@
     <div>
       <h2>Contact Us</h2>
       <form id="contactForm">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="name" placeholder="Name" required />
+        <input type="email" name="email" placeholder="Email" required />
         <textarea name="request" rows="4" placeholder="Request/Complaint/Comment" required></textarea>
         <button type="submit">Submit</button>
       </form>
