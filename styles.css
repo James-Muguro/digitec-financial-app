@@ -22,7 +22,7 @@ body::before {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.4); /* light overlay */
+  background: rgba(255, 255, 255, 0.4); /* subtle light overlay */
   z-index: -1;
   pointer-events: none;
   transition: background 0.3s ease;
@@ -35,7 +35,7 @@ body.dark-mode {
 }
 
 body.dark-mode::before {
-  background: rgba(0, 0, 0, 0.4); /* darker overlay for contrast */
+  background: rgba(0, 0, 0, 0.4); /* subtle dark overlay */
 }
 
 /* Container */
