@@ -111,9 +111,6 @@ body.dark-mode::before {
 
 .card h2 {
   color: #007bff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card p {
@@ -142,48 +139,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Partners card specific styles */
-.partners-card {
-  grid-column: span 2;
-  background-color: rgba(0, 123, 255, 0.15);
-  border: 2px solid #007bff;
-}
-
-.partners-card h2 {
-  color: #004085;
-  margin-bottom: 15px;
-  font-weight: 700;
-  font-size: 1.8rem;
-  justify-content: flex-start;
-  gap: 8px;
-}
-
-.partners-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.partners-links a {
-  text-decoration: none;
-}
-
-.partners-links button {
-  background-color: #0056b3;
-  padding: 12px 28px;
-  font-weight: 600;
-  border-radius: 25px;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.partners-links button:hover {
-  background-color: #003d80;
-  box-shadow: 0 6px 15px rgba(0, 61, 128, 0.5);
-}
-
 /* Dark Mode Adjustments */
 body.dark-mode .card {
   background-color: rgba(43, 43, 43, 0.85);
@@ -204,21 +159,6 @@ body.dark-mode button {
 
 body.dark-mode button:hover {
   background-color: #1e90ff;
-}
-
-body.dark-mode .partners-card {
-  background-color: rgba(77, 163, 255, 0.15);
-  border-color: #4da3ff;
-}
-
-body.dark-mode .partners-links button {
-  background-color: #1e90ff;
-  box-shadow: 0 4px 10px rgba(30, 144, 255, 0.5);
-}
-
-body.dark-mode .partners-links button:hover {
-  background-color: #1477cc;
-  box-shadow: 0 6px 15px rgba(20, 119, 204, 0.7);
 }
 
 /* Footer */
@@ -288,4 +228,83 @@ body.dark-mode .partners-links button:hover {
 [data-animate].in-view {
   opacity: 1;
   transform: none;
+}
+
+/* Partners Card Specific Styles */
+.card.partners-card {
+  grid-column: span 2;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #007bff;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .card.partners-card {
+  background-color: rgba(43, 43, 43, 0.9);
+  border-color: #4da3ff;
+  box-shadow: 0 4px 12px rgba(77, 163, 255, 0.5);
+  color: #eee;
+}
+
+.partners-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.partners-logos a {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.partners-logos a img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.partners-logos a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.4);
+}
+
+.partners-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.partners-buttons a button {
+  background-color: #007bff;
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.partners-buttons a button:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .partners-buttons a button {
+  background-color: #4da3ff;
+}
+
+body.dark-mode .partners-buttons a button:hover {
+  background-color: #1e90ff;
 }
