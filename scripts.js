@@ -2,10 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('#sidebar a');
     const pages = document.querySelectorAll('.page-content');
 
+    const darkModeToggle = document.getElementById('darkModeToggle');
+
     // lazy-initialized Chart instances
     let portfolioChart = null;
     let assetAllocationChart = null;
     const STORAGE_KEY = 'digitec:lastPage';
+    const DARK_MODE_KEY = 'digitec:darkMode';
     
     // Mock API endpoint for payments
     const mockPaymentAPI = {
@@ -47,13 +50,38 @@ document.addEventListener('DOMContentLoaded', function () {
                     fill: true,
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 400 },
-                scales: { y: { beginAtZero: false } },
-                plugins: { legend: { display: true } }
-            }
+                onClick: (e, elements) => {
+                    if (elements.length > 0) {
+                        const elementIndex = elements[0].index;
+                        const data = portfolioChart.data.datasets[0].data[elementIndex];
+                        const label = portfolioChart.data.labels[elementIndex];
+                        const drilldownDiv = document.getElementById('portfolioDrilldown');
+
+                        // Mock drill-down data
+                        const drilldownData = {
+                            'Jan': [ { asset: 'Stocks', value: 15000 }, { asset: 'Bonds', value: 5000 } ],
+                            'Feb': [ { asset: 'Stocks', value: 16000 }, { asset: 'Bonds', value: 5000 } ],
+                            'Mar': [ { asset: 'Stocks', value: 15500 }, { asset: 'Bonds', value: 5000 } ],
+                            'Apr': [ { asset: 'Stocks', value: 17000 }, { asset: 'Bonds', value: 5000 } ],
+                            'May': [ { asset: 'Stocks', value: 18000 }, { asset: 'Bonds', value: 5000 } ],
+                            'Jun': [ { asset: 'Stocks', value: 17500 }, { asset: 'Bonds', value: 5000 } ],
+                            'Jul': [ { asset: 'Stocks', value: 19000 }, { asset: 'Bonds', value: 5000 } ],
+                        };
+
+                        const monthData = drilldownData[label];
+                        if (monthData) {
+                            let table = '<table class="table table-sm"><thead><tr><th>Asset</th><th>Value</th></tr></thead><tbody>';
+                            monthData.forEach(item => {
+                                table += `<tr><td>${item.asset}</td><td>${item.value.toFixed(2)}</td></tr>`;
+                            });
+                            table += '</tbody></table>';
+                            drilldownDiv.innerHTML = table;
+                            drilldownDiv.classList.remove('d-none');
+                        } else {
+                            drilldownDiv.classList.add('d-none');
+                        }
+                    }
+                }
         });
     }
 
@@ -75,12 +103,33 @@ document.addEventListener('DOMContentLoaded', function () {
                     backgroundColor: ['#007bff', '#17a2b8', '#28a745'],
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 400 },
-                plugins: { legend: { position: 'bottom' } }
-            }
+                onClick: (e, elements) => {
+                    if (elements.length > 0) {
+                        const elementIndex = elements[0].index;
+                        const label = assetAllocationChart.data.labels[elementIndex];
+                        const drilldownDiv = document.getElementById('assetAllocationDrilldown');
+
+                        // Mock drill-down data
+                        const drilldownData = {
+                            'Tech Stocks': [ { symbol: 'AAPL', value: 5000 }, { symbol: 'GOOGL', value: 5000 }, { symbol: 'MSFT', value: 5000 } ],
+                            'Crypto': [ { symbol: 'BTC', value: 3000 }, { symbol: 'ETH', value: 2000 } ],
+                            'Real Estate': [ { property: '123 Main St', value: 5000 } ],
+                        };
+
+                        const categoryData = drilldownData[label];
+                        if (categoryData) {
+                            let table = '<table class="table table-sm"><thead><tr><th>Asset</th><th>Value</th></tr></thead><tbody>';
+                            categoryData.forEach(item => {
+                                table += `<tr><td>${item.symbol || item.property}</td><td>${item.value.toFixed(2)}</td></tr>`;
+                            });
+                            table += '</tbody></table>';
+                            drilldownDiv.innerHTML = table;
+                            drilldownDiv.classList.remove('d-none');
+                        } else {
+                            drilldownDiv.classList.add('d-none');
+                        }
+                    }
+                }
         });
     }
 
@@ -270,6 +319,48 @@ document.addEventListener('DOMContentLoaded', function () {
             exportTableToCSV('transactionsTable', `transactions_${new Date().toISOString().split('T')[0]}.csv`);
         });
     }
+
+    // Transaction history filtering
+    const filterForm = document.getElementById('historyFilterForm');
+    if (filterForm) {
+        const table = document.getElementById('transactionsTable');
+        const rows = table.querySelectorAll('tbody tr');
+
+        filterForm.addEventListener('input', () => {
+            const type = document.getElementById('filterType').value;
+            const status = document.getElementById('filterStatus').value;
+            const date = document.getElementById('filterDate').value;
+
+            rows.forEach(row => {
+                const rowType = row.cells[2].textContent;
+                const rowStatus = row.cells[4].textContent;
+                const rowDate = row.cells[0].textContent;
+
+                const typeMatch = !type || rowType === type;
+                const statusMatch = !status || rowStatus === status;
+                const dateMatch = !date || rowDate === date;
+
+                row.style.display = typeMatch && statusMatch && dateMatch ? '' : 'none';
+            });
+        });
+    }
+
+    // Dark Mode functionality
+    function setDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+            try { localStorage.setItem(DARK_MODE_KEY, 'true'); } catch (e) { /* ignore */ }
+        } else {
+            document.body.classList.remove('dark-mode');
+            darkModeToggle.checked = false;
+            try { localStorage.setItem(DARK_MODE_KEY, 'false'); } catch (e) { /* ignore */ }
+        }
+    }
+
+    darkModeToggle.addEventListener('change', (e) => {
+        setDarkMode(e.target.checked);
+    });
 
     // Initialize ARIA states and visible page on load
     (function initState() {

@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dark-mode.css">
 </head>
 <body>
     <div class="d-flex">
@@ -31,6 +32,12 @@
                     <a href="#" data-target="history"><span class="material-icons">history</span> History</a>
                 </li>
             </ul>
+            <div class="sidebar-footer p-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                    <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+                </div>
+            </div>
         </nav>
 
         <div id="content" class="p-4">
@@ -73,6 +80,7 @@
                                 <div class="chart-wrapper" style="height:260px; min-height:260px;">
                                     <canvas id="portfolioChart" height="260" style="display:block; width:100%; height:100%;"></canvas>
                                 </div>
+                                <div id="portfolioDrilldown" class="d-none mt-3"></div>
                             </div>
                         </div>
                     </div>
@@ -115,6 +123,7 @@
                                 <div class="chart-wrapper" style="height:260px; min-height:260px;">
                                     <canvas id="assetAllocationChart" height="260" style="display:block; width:100%; height:100%;"></canvas>
                                 </div>
+                                <div id="assetAllocationDrilldown" class="d-none mt-3"></div>
                             </div>
                         </div>
                     </div>
@@ -170,6 +179,29 @@
                                 Export CSV
                             </button>
                         </div>
+                        <form class="row g-3 mb-3" id="historyFilterForm">
+                            <div class="col-md-4">
+                                <label for="filterType" class="form-label">Type</label>
+                                <select id="filterType" class="form-select">
+                                    <option value="">All</option>
+                                    <option value="Payment">Payment</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="Investment">Investment</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="filterStatus" class="form-label">Status</label>
+                                <select id="filterStatus" class="form-select">
+                                    <option value="">All</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="filterDate" class="form-label">Date</label>
+                                <input type="date" id="filterDate" class="form-control">
+                            </div>
+                        </form>
                         <table class="table table-hover" id="transactionsTable">
                             <thead>
                                 <tr>
