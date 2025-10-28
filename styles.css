@@ -1,65 +1,160 @@
-body {
-    background-color: #f8f9fa;
+/* Design tokens */
+:root{
+    --bg: #f8f9fa;
+    --sidebar-bg: #000;
+    --sidebar-hover: #343a40;
+    --accent: #007bff;
+    --text: #212529;
+    --muted: #6c757d;
+    --card-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --chart-height: 260px;
 }
 
-#sidebar {
+/* Base */
+body{
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
+
+/* Sidebar */
+#sidebar{
     min-width: 250px;
     max-width: 250px;
-    min-height: 100vh;
-    transition: all 0.3s;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    transition: all 0.25s ease;
+    background: var(--sidebar-bg);
 }
 
-#sidebar .sidebar-header {
+#sidebar .sidebar-header{
     padding: 20px;
-    background: #000;
+    background: var(--sidebar-bg);
+    color: #fff;
 }
 
-#sidebar ul.components {
+#sidebar ul.components{
     padding: 20px 0;
+    margin: 0;
+    list-style: none;
 }
 
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-    color: #fff;
-    text-decoration: none;
+#sidebar ul li a{
+    padding: 10px 12px;
+    font-size: 1.05rem;
     display: flex;
     align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.15s ease, transform 0.08s ease;
 }
 
-#sidebar ul li a:hover {
-    background: #343a40;
+#sidebar ul li a:hover,
+#sidebar ul li a:focus{
+    background: var(--sidebar-hover);
+    outline: none;
+    transform: translateY(-1px);
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    background: #343a40;
+#sidebar ul li.active > a,
+#sidebar ul li a[aria-expanded="true"]{
+    background: var(--sidebar-hover);
 }
 
-#sidebar .material-icons {
-    margin-right: 10px;
+#sidebar .material-icons{
+    margin-right: 8px;
+    font-size: 20px;
 }
 
-#content {
+/* thin scrollbar for sidebar */
+#sidebar::-webkit-scrollbar{ width: 8px; }
+#sidebar::-webkit-scrollbar-thumb{ background: rgba(255,255,255,0.08); border-radius: 8px; }
+
+/* Content area */
+#content{
     width: 100%;
+    min-height: calc(100vh - 40px);
+    padding: 1.5rem;
 }
 
-.page-content {
-    animation: fadeIn 0.5s;
+/* Page and transitions */
+.page-content{
+    animation: fadeIn 0.28s ease both;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes fadeIn{
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.card {
+/* Cards */
+.card{
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: var(--radius);
+    box-shadow: var(--card-shadow);
+}
+
+/* Chart wrapper & canvas stability (prevents zero-size / hidden render issues) */
+.chart-wrapper{
+    height: var(--chart-height);
+    min-height: 180px;
+    position: relative;
+}
+
+/* Enforce canvas sizing so Chart.js can reliably compute dimensions */
+.card canvas{
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    max-height: 420px;
+}
+
+/* Buttons & focus */
+.btn:focus,
+a:focus{
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.18);
+    border-radius: 6px;
+}
+
+/* Table responsiveness */
+.table{
+    margin-bottom: 0;
+}
+
+/* Utility: visually hidden (accessible helper) */
+.visually-hidden{
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+/* Small screens: compact sidebar */
+@media (max-width: 768px){
+    #sidebar{
+        min-width: 70px;
+        max-width: 70px;
+    }
+    #sidebar .sidebar-header h3{
+        display: none;
+    }
+    #content{
+        padding: 1rem;
+    }
+    /* make chart wrappers slightly shorter on small screens */
+    :root{ --chart-height: 200px; }
+}
+
+/* Accessibility: ensure hidden pages are removed from layout for assistive tech */
+.d-none{
+    display: none !important;
 }
