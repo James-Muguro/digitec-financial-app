@@ -11,6 +11,8 @@
 
 Welcome to the Digitec Financial App! This is a modern, accessible financial dashboard designed to help you manage your accounts, investments, and payments with ease. Built with vanilla JavaScript and Chart.js, this app offers a clean, intuitive interface and powerful features for a comprehensive financial overview.
 
+![Project Screenshot](https://via.placeholder.com/800x400.png?text=Project+Screenshot)
+
 ## 🚀 Getting Started
 
 Follow these simple steps to get the app up and running on your local machine.
@@ -58,12 +60,24 @@ Follow these simple steps to get the app up and running on your local machine.
 | **Accessibility**     | Full ARIA support, keyboard navigation, focus management, and live announcements for a seamless experience. |
 | **Responsive Design** | A mobile-first design ensures the app looks and works great on all devices.                             |
 
-## 🛠️ Usage
+## 🛠️ Technologies Used
 
-- **Navigate:** Use the sidebar to switch between the Dashboard, Wallets, Investments, Payments, and Transactions pages.
-- **Interact with Charts:** Hover over the charts to see detailed data points. The charts are responsive and will resize with the window.
-- **Make a Payment:** Fill out the payment form and submit it. The app will simulate an API call and provide feedback on the transaction's success or failure.
-- **Export Transactions:** On the Transactions page, click the "Export to CSV" button to download your transaction history.
+- **HTML5 & CSS3:** For the structure and styling of the application.
+- **Vanilla JavaScript (ES6+):** For the application logic and interactivity.
+- **Chart.js:** For creating beautiful and interactive charts.
+- **Bootstrap 5.3:** For the responsive layout and UI components.
+- **Material Icons:** For the icons used throughout the application.
+
+## 📂 Project Structure
+
+```
+digitec-financial-app/
+├── index.html
+├── styles.css
+├── scripts.js
+├── README.md
+└── LICENSE
+```
 
 ## 🗺️ Roadmap
 
@@ -84,9 +98,21 @@ Contributions are welcome! If you have ideas for new features or improvements, p
 
 Please make sure your code adheres to the project's coding standards and includes tests where applicable.
 
+### Reporting Bugs
+
+If you find a bug, please open an issue on the [GitHub issue tracker](https://github.com/James-Muguro/digitec-financial-app/issues). Please provide a detailed description of the bug and steps to reproduce it.
+
+### Suggesting Enhancements
+
+If you have an idea for a new feature or an enhancement to an existing one, please open an issue on the [GitHub issue tracker](https://github.com/James-Muguro/digitec-financial-app/issues). Please provide a clear and detailed explanation of your suggestion.
+
 ## 📜 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## 💖 Support
+
+If you like this project, please consider giving it a ⭐ on [GitHub](https://github.com/James-Muguro/digitec-financial-app). It would be greatly appreciated!
 
 ## 📞 Contact
 
