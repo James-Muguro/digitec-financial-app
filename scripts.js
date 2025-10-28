@@ -31,17 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    duration: 400
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
-                },
-                plugins: {
-                    legend: { display: true }
-                }
+                animation: { duration: 400 },
+                scales: { y: { beginAtZero: false } },
+                plugins: { legend: { display: true } }
             }
         });
     }
@@ -67,12 +59,49 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: {
-                    duration: 400
-                },
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
+                animation: { duration: 400 },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+    }
+
+    // simple debounce utility
+    function debounce(fn, wait = 200) {
+        let timer = null;
+        return function (...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => fn.apply(this, args), wait);
+        };
+    }
+
+    // Resize handler (debounced) to avoid expensive repeated redraws
+    const handleResize = debounce(() => {
+        if (portfolioChart) {
+            try { portfolioChart.resize(); portfolioChart.update(); } catch (e) { /* ignore */ }
+        }
+        if (assetAllocationChart) {
+            try { assetAllocationChart.resize(); assetAllocationChart.update(); } catch (e) { /* ignore */ }
+        }
+    }, 200);
+
+    window.addEventListener('resize', handleResize);
+
+    // Ensure aria-hidden and aria-current reflect UI state
+    function setVisibility(targetId) {
+        pages.forEach(page => {
+            const isVisible = (page.id === targetId);
+            page.classList.toggle('d-none', !isVisible);
+            page.setAttribute('aria-hidden', (!isVisible).toString());
+        });
+
+        navLinks.forEach(link => {
+            const isActive = (link.getAttribute('data-target') === targetId);
+            if (isActive) {
+                link.parentElement.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.parentElement.classList.remove('active');
+                link.removeAttribute('aria-current');
             }
         });
     }
@@ -81,28 +110,38 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
-            const currentActive = document.querySelector('#sidebar .active');
-            if (currentActive) currentActive.classList.remove('active');
-            this.parentElement.classList.add('active');
-
             const targetId = this.getAttribute('data-target');
 
-            pages.forEach(page => {
-                if (page.id === targetId) {
-                    page.classList.remove('d-none');
-                } else {
-                    page.classList.add('d-none');
-                }
-            });
+            // update visibility and accessibility attributes
+            setVisibility(targetId);
 
-            // Ensure charts initialize/rescale after visibility change
+            // Ensure charts initialize/rescale after visibility change (on next frame)
             requestAnimationFrame(() => {
                 if (targetId === 'dashboard') initPortfolioChart();
                 if (targetId === 'investments') initAssetAllocationChart();
+
+                // force resize/update in case container size changed during transition
+                handleResize();
             });
         });
     });
 
-    // Initialize visible charts on load
-    initPortfolioChart();
+    // Initialize ARIA states and visible page on load
+    (function initState() {
+        // Determine initially visible page (any without d-none)
+        let visiblePage = null;
+        pages.forEach(page => {
+            if (!page.classList.contains('d-none')) visiblePage = page.id;
+        });
+        if (!visiblePage) visiblePage = pages[0] && pages[0].id;
+
+        setVisibility(visiblePage);
+
+        // initialize charts for the visible page
+        if (visiblePage === 'dashboard') initPortfolioChart();
+        if (visiblePage === 'investments') initAssetAllocationChart();
+
+        // small deferred resize to handle any initial layout quirks
+        requestAnimationFrame(() => handleResize());
+    })();
 });
