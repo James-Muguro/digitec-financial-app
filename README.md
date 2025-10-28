@@ -9,113 +9,140 @@
 
 # Digitec Financial App
 
-Welcome to the Digitec Financial App! This is a modern, accessible financial dashboard designed to help you manage your accounts, investments, and payments with ease. Built with vanilla JavaScript and Chart.js, this app offers a clean, intuitive interface and powerful features for a comprehensive financial overview.
+A modern, accessible financial dashboard for managing accounts, investments, and payments. Built with vanilla JavaScript and Chart.js.
 
-![Project Screenshot](https://via.placeholder.com/800x400.png?text=Project+Screenshot)
+## Features
 
-## 🚀 Getting Started
+### Dashboard
 
-Follow these simple steps to get the app up and running on your local machine.
+- Total balance, investments, and liabilities overview
+- Interactive portfolio performance chart
+- Responsive layout with mobile support
 
-### Prerequisites
+### Wallets
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- [Node.js](https://nodejs.org/) (optional, for local server)
-- [Git](https://git-scm.com/) (for cloning the repository)
+- View multiple account balances
+- Quick transfer and details access
+- Card-based interface for easy scanning
 
-### Installation
+### Investments
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/James-Muguro/digitec-financial-app.git
-   cd digitec-financial-app
-   ```
+- Dynamic asset allocation doughnut chart
+- Detailed holdings breakdown
+- Real-time portfolio visualization
 
-2. **Run the application:**
-   - **Option 1: Simple Local Server (No Dependencies)**
-     If you have Python installed, you can run a simple web server:
-     ```bash
-     python3 -m http.server 8000
-     ```
-     Or, if you have Node.js, you can use `npx`:
-     ```bash
-     npx http-server
-     ```
-   - **Option 2: Direct File Access**
-     Simply open the `index.html` file in your web browser.
+### Payments
 
-3. **Access the app:**
-   - If using a local server, navigate to `http://localhost:8000` in your browser.
-   - If opening the file directly, the app will run from your local file system.
+- User-friendly payment form
+- Simulated API integration (90% success rate)
+- Success/error feedback with loading states
+- Form validation and error handling
 
-## ✨ Features
+### Transaction History
 
-| Feature               | Description                                                                                             |
-| --------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Dashboard**         | Get a comprehensive overview of your total balance, investments, and liabilities.                       |
-| **Interactive Charts**| Visualize your portfolio performance and asset allocation with dynamic charts powered by Chart.js.      |
-| **Wallet Management** | View multiple account balances, access details, and perform quick transfers.                            |
-| **Payment System**    | A user-friendly payment form with simulated API integration, validation, and success/error feedback.    |
-| **Transaction History**| A sortable table of your transactions with status indicators and CSV export functionality.              |
-| **Accessibility**     | Full ARIA support, keyboard navigation, focus management, and live announcements for a seamless experience. |
-| **Responsive Design** | A mobile-first design ensures the app looks and works great on all devices.                             |
+- Sortable transaction table
+- Status indicators with color coding
+- CSV export functionality
+- Detailed transaction information
 
-## 🛠️ Technologies Used
+## Technical Features
 
-- **HTML5 & CSS3:** For the structure and styling of the application.
-- **Vanilla JavaScript (ES6+):** For the application logic and interactivity.
-- **Chart.js:** For creating beautiful and interactive charts.
-- **Bootstrap 5.3:** For the responsive layout and UI components.
-- **Material Icons:** For the icons used throughout the application.
+### Accessibility
 
-## 📂 Project Structure
+- ARIA attributes for screen readers
+- Keyboard navigation support
+- Focus management
+- Live announcements for dynamic content
+- Skip links and proper heading structure
+
+### User Experience
+
+- Page state persistence using localStorage
+- Lazy-loaded charts (only initialize when visible)
+- Responsive sidebar with mobile optimization
+- Optimistic UI updates for better feedback
+- Debounced chart resizing for performance
+
+## Technology Stack
+
+- HTML5 & CSS3
+- Vanilla JavaScript (ES6+)
+- Bootstrap 5.3
+- Chart.js for data visualization
+- Material Icons
+
+## Setup Instructions
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/James-Muguro/digitec-financial-app.git
+cd digitec-financial-app
+```
+
+2. Serve locally (optional):
+
+```bash
+# Using Python
+python3 -m http.server 8000
+
+# Or using Node.js
+npx http-server
+```
+
+3. Access the app:
+
+- Using local server: visit `http://localhost:8000`
+- Direct access: open `index.html` in your browser
+
+## Project Structure
 
 ```
 digitec-financial-app/
-├── index.html
-├── styles.css
-├── scripts.js
-├── README.md
-└── LICENSE
+├── index.html      # Main application markup
+├── styles.css      # Custom styles and Bootstrap overrides
+├── scripts.js      # Application logic and chart initialization
+├── README.md       # This documentation
+└── LICENSE         # MIT License
 ```
 
-## 🗺️ Roadmap
+## Development Notes
 
-- [ ] **Multi-language Support:** Add support for multiple languages to make the app accessible to a wider audience.
-- [ ] **Themes:** Introduce light and dark themes for a personalized user experience.
-- [ ] **API Integration:** Replace the mock API with a real financial API for live data.
-- [ ] **User Authentication:** Implement user accounts and authentication for secure access.
+### Charts
+- Portfolio chart uses line type with area fill
+- Asset allocation uses doughnut chart
+- Both charts are responsive and resize with window
+- Charts initialize lazily when their page becomes visible
 
-## 🤝 Contributing
+### Navigation
+- Keyboard accessible (Enter/Space to activate)
+- Proper ARIA attributes for screen readers
+- Focus management between pages
+- State persistence across sessions
 
-Contributions are welcome! If you have ideas for new features or improvements, please follow these steps:
+### Forms & Data
+- Mock payment API with simulated network delay
+- CSV export using Blob API
+- Form validation and error handling
+- Optimistic UI updates
 
-1. **Fork the repository.**
-2. **Create a new feature branch:** `git checkout -b feature/YourAmazingFeature`
-3. **Commit your changes:** `git commit -m 'Add: Your amazing feature'`
-4. **Push to the branch:** `git push origin feature/YourAmazingFeature`
-5. **Open a Pull Request.**
+## Browser Support
 
-Please make sure your code adheres to the project's coding standards and includes tests where applicable.
+Tested and works in:
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
 
-### Reporting Bugs
+## Contributing
 
-If you find a bug, please open an issue on the [GitHub issue tracker](https://github.com/James-Muguro/digitec-financial-app/issues). Please provide a detailed description of the bug and steps to reproduce it.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add: Feature description'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Suggesting Enhancements
+## License
 
-If you have an idea for a new feature or an enhancement to an existing one, please open an issue on the [GitHub issue tracker](https://github.com/James-Muguro/digitec-financial-app/issues). Please provide a clear and detailed explanation of your suggestion.
-
-## 📜 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## 💖 Support
-
-If you like this project, please consider giving it a ⭐ on [GitHub](https://github.com/James-Muguro/digitec-financial-app). It would be greatly appreciated!
-
-## 📞 Contact
-
-James Muguro – [jamesmuguro@example.com](mailto:jamesmuguro@example.com)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 Project Link: [https://github.com/James-Muguro/digitec-financial-app](https://github.com/James-Muguro/digitec-financial-app)
