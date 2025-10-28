@@ -31,6 +31,9 @@
                 <li>
                     <a href="#" data-target="history"><span class="material-icons">history</span> History</a>
                 </li>
+                <li>
+                    <a href="#" data-target="goals"><span class="material-icons">flag</span> Goals</a>
+                </li>
             </ul>
             <div class="sidebar-footer p-3">
                 <div class="form-check form-switch">
@@ -85,6 +88,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">AI Budgeting Insights</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <span class="material-icons me-3">lightbulb</span>
+                                        <div>
+                                            <strong>Optimize Subscriptions</strong>
+                                            <p class="mb-0 text-muted">You could save $30/month by reviewing your streaming service subscriptions.</p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <span class="material-icons me-3">restaurant</span>
+                                        <div>
+                                            <strong>Dining Out Habits</strong>
+                                            <p class="mb-0 text-muted">Your spending on dining out is 20% higher than last month. Consider cooking at home more often.</p>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <span class="material-icons me-3">savings</span>
+                                        <div>
+                                            <strong>Emergency Fund</strong>
+                                            <p class="mb-0 text-muted">You are on track to reach your emergency fund goal by December.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
 
             <main id="wallets" class="page-content d-none" aria-hidden="true">
@@ -105,6 +140,18 @@
                             <div class="card-body">
                                 <h5 class="card-title">Savings Wallet</h5>
                                 <p class="card-text fs-4">$14,000.00</p>
+                                <button class="btn btn-primary">Details</button>
+                                <button class="btn btn-secondary">Transfer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Euro Wallet</h5>
+                                <p class="card-text fs-4">€5,000.00</p>
                                 <button class="btn btn-primary">Details</button>
                                 <button class="btn btn-secondary">Transfer</button>
                             </div>
@@ -132,10 +179,33 @@
                             <div class="card-body">
                                 <h5 class="card-title">Holdings</h5>
                                 <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Asset</th>
+                                            <th>Quantity</th>
+                                            <th>Value</th>
+                                            <th>24h Change</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        <tr><td>Tech Stocks</td><td>$15,000</td></tr>
-                                        <tr><td>Crypto</td><td>$5,000</td></tr>
-                                        <tr><td>Real Estate</td><td>$5,000</td></tr>
+                                        <tr>
+                                            <td>Tech Stocks</td>
+                                            <td>100</td>
+                                            <td>$15,000</td>
+                                            <td class="text-success">+2.5%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Crypto</td>
+                                            <td>2</td>
+                                            <td>$5,000</td>
+                                            <td class="text-danger">-1.2%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Real Estate</td>
+                                            <td>1</td>
+                                            <td>$5,000</td>
+                                            <td class="text-success">+0.5%</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -146,24 +216,50 @@
 
             <main id="payments" class="page-content d-none" aria-hidden="true">
                 <h2 tabindex="-1">Payments</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Send Money</h5>
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient" class="form-label">Recipient</label>
-                                <input type="text" class="form-control" id="recipient" placeholder="Enter name or email">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Send Money</h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="recipient" class="form-label">Recipient</label>
+                                        <input type="text" class="form-control" id="recipient" placeholder="Enter name or email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount</label>
+                                        <input type="number" class="form-control" id="amount" placeholder="$0.00">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="note" class="form-label">Note</label>
+                                        <textarea class="form-control" id="note" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Send</button>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <label for="amount" class="form-label">Amount</label>
-                                <input type="number" class="form-control" id="amount" placeholder="$0.00">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Receive Money</h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="payer" class="form-label">Payer</label>
+                                        <input type="text" class="form-control" id="payer" placeholder="Enter name or email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="requestAmount" class="form-label">Amount</label>
+                                        <input type="number" class="form-control" id="requestAmount" placeholder="$0.00">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="requestNote" class="form-label">Note</label>
+                                        <textarea class="form-control" id="requestNote" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Request</button>
+                                </form>
                             </div>
-                            <div class="mb-3">
-                                <label for="note" class="form-label">Note</label>
-                                <textarea class="form-control" id="note" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -180,7 +276,7 @@
                             </button>
                         </div>
                         <form class="row g-3 mb-3" id="historyFilterForm">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="filterType" class="form-label">Type</label>
                                 <select id="filterType" class="form-select">
                                     <option value="">All</option>
@@ -189,7 +285,7 @@
                                     <option value="Investment">Investment</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="filterStatus" class="form-label">Status</label>
                                 <select id="filterStatus" class="form-select">
                                     <option value="">All</option>
@@ -197,7 +293,15 @@
                                     <option value="Pending">Pending</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <label for="filterCurrency" class="form-label">Currency</label>
+                                <select id="filterCurrency" class="form-select">
+                                    <option value="">All</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
                                 <label for="filterDate" class="form-label">Date</label>
                                 <input type="date" id="filterDate" class="form-control">
                             </div>
@@ -209,6 +313,7 @@
                                     <th>Description</th>
                                     <th>Type</th>
                                     <th>Amount</th>
+                                    <th>Balance</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -218,6 +323,7 @@
                                     <td>Payment to John Doe</td>
                                     <td>Payment</td>
                                     <td>-$50.00</td>
+                                    <td>$15,300.50</td>
                                     <td><span class="badge bg-success">Completed</span></td>
                                 </tr>
                                 <tr>
@@ -225,6 +331,7 @@
                                     <td>Transfer from Savings</td>
                                     <td>Transfer</td>
                                     <td>+$500.00</td>
+                                    <td>$15,350.50</td>
                                     <td><span class="badge bg-success">Completed</span></td>
                                 </tr>
                                 <tr>
@@ -232,6 +339,7 @@
                                     <td>Stock Purchase: AAPL</td>
                                     <td>Investment</td>
                                     <td>-$1000.00</td>
+                                    <td>$14,850.50</td>
                                     <td><span class="badge bg-success">Completed</span></td>
                                 </tr>
                                 <tr>
@@ -239,10 +347,71 @@
                                     <td>Payment Request from Jane</td>
                                     <td>Payment</td>
                                     <td>+$20.00</td>
+                                    <td>$15,850.50</td>
                                     <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2025-10-23</td>
+                                    <td>Transfer to Euro Wallet</td>
+                                    <td>Transfer</td>
+                                    <td>-€100.00</td>
+                                    <td>€4,900.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </main>
+
+            <main id="goals" class="page-content d-none" aria-hidden="true">
+                <h2 tabindex="-1">Financial Goals</h2>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Add New Goal</h5>
+                        <form id="addGoalForm">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="goalName" class="form-label">Goal Name</label>
+                                    <input type="text" class="form-control" id="goalName" placeholder="e.g., Vacation to Hawaii">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="goalAmount" class="form-label">Target Amount</label>
+                                    <input type="number" class="form-control" id="goalAmount" placeholder="$0.00">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="goalDate" class="form-label">Target Date</label>
+                                    <input type="date" class="form-control" id="goalDate">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Goal</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Goals</h5>
+                        <ul class="list-group list-group-flush" id="goalsList">
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>Vacation to Hawaii</strong>
+                                    <span>$2,500 / $5,000</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>Down Payment for a House</strong>
+                                    <span>$10,000 / $50,000</span>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </main>

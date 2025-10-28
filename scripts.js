@@ -1,22 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('#sidebar a');
     const pages = document.querySelectorAll('.page-content');
-
     const darkModeToggle = document.getElementById('darkModeToggle');
+
+    // Storage keys
+    const STORAGE_KEY = 'digitec:lastPage';
+    const DARK_MODE_KEY = 'digitec:darkMode';
 
     // lazy-initialized Chart instances
     let portfolioChart = null;
     let assetAllocationChart = null;
-    const STORAGE_KEY = 'digitec:lastPage';
-    const DARK_MODE_KEY = 'digitec:darkMode';
-    
-    // Mock API endpoint for payments
+
+    // Mock API endpoints
     const mockPaymentAPI = {
         send: async (data) => {
-            // Simulate network delay
             await new Promise(resolve => setTimeout(resolve, 800));
-            
-            // Simulate 90% success rate
             if (Math.random() > 0.1) {
                 return {
                     success: true,
@@ -25,6 +23,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
             }
             throw new Error('Payment failed. Please try again.');
+        }
+    };
+
+    const mockRequestAPI = {
+        request: async (data) => {
+            await new Promise(resolve => setTimeout(resolve, 800));
+            if (Math.random() > 0.05) {
+                return {
+                    success: true,
+                    id: 'req_' + Math.random().toString(36).substr(2, 9),
+                    ...data
+                };
+            }
+            throw new Error('Request failed. Please try again.');
         }
     };
 
@@ -37,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const canvas = document.getElementById('portfolioChart');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        
         portfolioChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -50,6 +63,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     fill: true,
                 }]
             },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 400
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                },
+                plugins: {
+                    legend: { display: true }
+                },
                 onClick: (e, elements) => {
                     if (elements.length > 0) {
                         const elementIndex = elements[0].index;
@@ -59,13 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         // Mock drill-down data
                         const drilldownData = {
-                            'Jan': [ { asset: 'Stocks', value: 15000 }, { asset: 'Bonds', value: 5000 } ],
-                            'Feb': [ { asset: 'Stocks', value: 16000 }, { asset: 'Bonds', value: 5000 } ],
-                            'Mar': [ { asset: 'Stocks', value: 15500 }, { asset: 'Bonds', value: 5000 } ],
-                            'Apr': [ { asset: 'Stocks', value: 17000 }, { asset: 'Bonds', value: 5000 } ],
-                            'May': [ { asset: 'Stocks', value: 18000 }, { asset: 'Bonds', value: 5000 } ],
-                            'Jun': [ { asset: 'Stocks', value: 17500 }, { asset: 'Bonds', value: 5000 } ],
-                            'Jul': [ { asset: 'Stocks', value: 19000 }, { asset: 'Bonds', value: 5000 } ],
+                            'Jan': [{ asset: 'Stocks', value: 15000 }, { asset: 'Bonds', value: 5000 }],
+                            'Feb': [{ asset: 'Stocks', value: 16000 }, { asset: 'Bonds', value: 5000 }],
+                            'Mar': [{ asset: 'Stocks', value: 15500 }, { asset: 'Bonds', value: 5000 }],
+                            'Apr': [{ asset: 'Stocks', value: 17000 }, { asset: 'Bonds', value: 5000 }],
+                            'May': [{ asset: 'Stocks', value: 18000 }, { asset: 'Bonds', value: 5000 }],
+                            'Jun': [{ asset: 'Stocks', value: 17500 }, { asset: 'Bonds', value: 5000 }],
+                            'Jul': [{ asset: 'Stocks', value: 19000 }, { asset: 'Bonds', value: 5000 }],
                         };
 
                         const monthData = drilldownData[label];
@@ -77,11 +104,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             table += '</tbody></table>';
                             drilldownDiv.innerHTML = table;
                             drilldownDiv.classList.remove('d-none');
-                        } else {
-                            drilldownDiv.classList.add('d-none');
                         }
                     }
                 }
+            }
         });
     }
 
@@ -94,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const canvas = document.getElementById('assetAllocationChart');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        
         assetAllocationChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -103,6 +130,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     backgroundColor: ['#007bff', '#17a2b8', '#28a745'],
                 }]
             },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 400
+                },
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
                 onClick: (e, elements) => {
                     if (elements.length > 0) {
                         const elementIndex = elements[0].index;
@@ -111,9 +147,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         // Mock drill-down data
                         const drilldownData = {
-                            'Tech Stocks': [ { symbol: 'AAPL', value: 5000 }, { symbol: 'GOOGL', value: 5000 }, { symbol: 'MSFT', value: 5000 } ],
-                            'Crypto': [ { symbol: 'BTC', value: 3000 }, { symbol: 'ETH', value: 2000 } ],
-                            'Real Estate': [ { property: '123 Main St', value: 5000 } ],
+                            'Tech Stocks': [{ symbol: 'AAPL', value: 5000 }, { symbol: 'GOOGL', value: 5000 }, { symbol: 'MSFT', value: 5000 }],
+                            'Crypto': [{ symbol: 'BTC', value: 3000 }, { symbol: 'ETH', value: 2000 }],
+                            'Real Estate': [{ property: '123 Main St', value: 5000 }],
                         };
 
                         const categoryData = drilldownData[label];
@@ -125,13 +161,44 @@ document.addEventListener('DOMContentLoaded', function () {
                             table += '</tbody></table>';
                             drilldownDiv.innerHTML = table;
                             drilldownDiv.classList.remove('d-none');
-                        } else {
-                            drilldownDiv.classList.add('d-none');
                         }
                     }
                 }
+            }
         });
     }
+
+    // Dark Mode functionality
+    function setDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+            try { localStorage.setItem(DARK_MODE_KEY, 'true'); } catch (e) { /* ignore */ }
+        } else {
+            document.body.classList.remove('dark-mode');
+            darkModeToggle.checked = false;
+            try { localStorage.setItem(DARK_MODE_KEY, 'false'); } catch (e) { /* ignore */ }
+        }
+
+        // Update charts if they exist
+        if (portfolioChart) portfolioChart.update();
+        if (assetAllocationChart) assetAllocationChart.update();
+    }
+
+    // Initialize dark mode from saved preference or system preference
+    try {
+        const darkModeSaved = localStorage.getItem(DARK_MODE_KEY);
+        if (darkModeSaved !== null) {
+            setDarkMode(darkModeSaved === 'true');
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setDarkMode(prefersDark);
+        }
+    } catch (e) { /* ignore */ }
+
+    darkModeToggle.addEventListener('change', (e) => {
+        setDarkMode(e.target.checked);
+    });
 
     // simple debounce utility
     function debounce(fn, wait = 200) {
@@ -192,26 +259,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Navigation event handlers
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-
             const targetId = this.getAttribute('data-target');
-
-            // update visibility and accessibility attributes
             setVisibility(targetId);
 
-            // Ensure charts initialize/rescale after visibility change (on next frame)
+            // Ensure charts initialize/rescale after visibility change
             requestAnimationFrame(() => {
                 if (targetId === 'dashboard') initPortfolioChart();
                 if (targetId === 'investments') initAssetAllocationChart();
-
-                // force resize/update in case container size changed during transition
                 handleResize();
             });
         });
 
-        // support keyboard activation (Enter / Space) for links
+        // Support keyboard activation
         link.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -225,31 +288,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const table = document.getElementById(tableId);
         if (!table) return;
 
-        // Get headers
         const headers = [];
         table.querySelectorAll('thead th').forEach(th => 
             headers.push(th.textContent.trim())
         );
 
-        // Get data rows
         const rows = [];
         table.querySelectorAll('tbody tr').forEach(tr => {
             const row = [];
             tr.querySelectorAll('td').forEach(td => {
-                // Clean up badge text if present
                 const badge = td.querySelector('.badge');
                 row.push(badge ? badge.textContent.trim() : td.textContent.trim());
             });
             rows.push(row);
         });
 
-        // Combine and format as CSV
         const csv = [
             headers.join(','),
             ...rows.map(row => row.join(','))
         ].join('\n');
 
-        // Create download
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         if (navigator.msSaveBlob) {
@@ -262,54 +320,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
-
-    // Handle payment form submission
-    const paymentForm = document.querySelector('#payments form');
-    if (paymentForm) {
-        paymentForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const formData = new FormData(this);
-            
-            // Disable form while processing
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="material-icons spin">refresh</span> Sending...';
-            
-            try {
-                const data = {
-                    recipient: formData.get('recipient'),
-                    amount: parseFloat(formData.get('amount')),
-                    note: formData.get('note')
-                };
-                
-                const result = await mockPaymentAPI.send(data);
-                
-                // Show success message
-                const alert = document.createElement('div');
-                alert.className = 'alert alert-success mt-3';
-                alert.role = 'alert';
-                alert.innerHTML = `Payment sent successfully! Transaction ID: ${result.id}`;
-                paymentForm.appendChild(alert);
-                
-                // Reset form
-                this.reset();
-                setTimeout(() => alert.remove(), 5000);
-                
-            } catch (error) {
-                // Show error message
-                const alert = document.createElement('div');
-                alert.className = 'alert alert-danger mt-3';
-                alert.role = 'alert';
-                alert.textContent = error.message;
-                paymentForm.appendChild(alert);
-                setTimeout(() => alert.remove(), 5000);
-            } finally {
-                // Re-enable form
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send';
-            }
-        });
     }
 
     // Wire up CSV export button
@@ -329,48 +339,148 @@ document.addEventListener('DOMContentLoaded', function () {
         filterForm.addEventListener('input', () => {
             const type = document.getElementById('filterType').value;
             const status = document.getElementById('filterStatus').value;
+            const currency = document.getElementById('filterCurrency').value;
             const date = document.getElementById('filterDate').value;
 
             rows.forEach(row => {
                 const rowType = row.cells[2].textContent;
-                const rowStatus = row.cells[4].textContent;
+                const rowStatus = row.querySelector('.badge').textContent;
+                const rowAmount = row.cells[3].textContent;
                 const rowDate = row.cells[0].textContent;
 
                 const typeMatch = !type || rowType === type;
                 const statusMatch = !status || rowStatus === status;
+                const currencyMatch = !currency || 
+                    (currency === 'USD' && rowAmount.includes('$')) || 
+                    (currency === 'EUR' && rowAmount.includes('€'));
                 const dateMatch = !date || rowDate === date;
 
-                row.style.display = typeMatch && statusMatch && dateMatch ? '' : 'none';
+                row.style.display = typeMatch && statusMatch && currencyMatch && dateMatch ? '' : 'none';
             });
         });
     }
 
-    // Dark Mode functionality
-    function setDarkMode(isDark) {
-        if (isDark) {
-            document.body.classList.add('dark-mode');
-            darkModeToggle.checked = true;
-            try { localStorage.setItem(DARK_MODE_KEY, 'true'); } catch (e) { /* ignore */ }
-        } else {
-            document.body.classList.remove('dark-mode');
-            darkModeToggle.checked = false;
-            try { localStorage.setItem(DARK_MODE_KEY, 'false'); } catch (e) { /* ignore */ }
-        }
+    // Handle payment form submission
+    const paymentForm = document.querySelector('#payments form');
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const formData = new FormData(this);
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="material-icons spin">refresh</span> Sending...';
+            
+            try {
+                const data = {
+                    recipient: formData.get('recipient'),
+                    amount: parseFloat(formData.get('amount')),
+                    note: formData.get('note')
+                };
+                
+                const result = await mockPaymentAPI.send(data);
+                
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success mt-3';
+                alert.role = 'alert';
+                alert.innerHTML = `Payment sent successfully! Transaction ID: ${result.id}`;
+                paymentForm.appendChild(alert);
+                
+                this.reset();
+                setTimeout(() => alert.remove(), 5000);
+                
+            } catch (error) {
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-danger mt-3';
+                alert.role = 'alert';
+                alert.textContent = error.message;
+                paymentForm.appendChild(alert);
+                setTimeout(() => alert.remove(), 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send';
+            }
+        });
     }
 
-    darkModeToggle.addEventListener('change', (e) => {
-        setDarkMode(e.target.checked);
-    });
+    // Handle request money form submission
+    const requestForm = document.querySelector('#payments .col-md-6:last-child form');
+    if (requestForm) {
+        requestForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const formData = new FormData(this);
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="material-icons spin">refresh</span> Requesting...';
+            
+            try {
+                const data = {
+                    payer: formData.get('payer'),
+                    amount: parseFloat(formData.get('requestAmount')),
+                    note: formData.get('requestNote')
+                };
+                
+                const result = await mockRequestAPI.request(data);
+                
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success mt-3';
+                alert.role = 'alert';
+                alert.innerHTML = `Money requested successfully! Request ID: ${result.id}`;
+                requestForm.appendChild(alert);
+                
+                this.reset();
+                setTimeout(() => alert.remove(), 5000);
+                
+            } catch (error) {
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-danger mt-3';
+                alert.role = 'alert';
+                alert.textContent = error.message;
+                requestForm.appendChild(alert);
+                setTimeout(() => alert.remove(), 5000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request';
+            }
+        });
+    }
+
+    // Handle add goal form submission
+    const addGoalForm = document.getElementById('addGoalForm');
+    if (addGoalForm) {
+        addGoalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const goalName = document.getElementById('goalName').value;
+            const goalAmount = document.getElementById('goalAmount').value;
+            const goalsList = document.getElementById('goalsList');
+
+            if (goalName && goalAmount) {
+                const newGoal = document.createElement('li');
+                newGoal.className = 'list-group-item';
+                newGoal.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <strong>${goalName}</strong>
+                        <span>$0 / ${goalAmount}</span>
+                    </div>
+                    <div class="progress mt-2">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;" 
+                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+                `;
+                goalsList.appendChild(newGoal);
+                this.reset();
+            }
+        });
+    }
 
     // Initialize ARIA states and visible page on load
     (function initState() {
-        // Determine initially visible page (any without d-none)
         let visiblePage = null;
         pages.forEach(page => {
             if (!page.classList.contains('d-none')) visiblePage = page.id;
         });
 
-        // If a page was persisted, prefer that one (if it exists)
         try {
             const persisted = localStorage.getItem(STORAGE_KEY);
             if (persisted && document.getElementById(persisted)) visiblePage = persisted;
@@ -384,7 +494,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (visiblePage === 'dashboard') initPortfolioChart();
         if (visiblePage === 'investments') initAssetAllocationChart();
 
-        // small deferred resize to handle any initial layout quirks
         requestAnimationFrame(() => handleResize());
     })();
 });
