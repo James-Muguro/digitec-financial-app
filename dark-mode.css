@@ -1,4 +1,7 @@
 /* Dark Mode Styles */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
 body.dark-mode {
     --bg: #1a1a1a;
@@ -9,35 +12,63 @@ body.dark-mode {
     --muted: #6c757d;
     --card-bg: #2a2a2a;
     --card-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    --border-color: #444;
+    background-color: var(--bg);
+    color: var(--text);
 }
 
+/* Card styles */
 body.dark-mode .card {
     background-color: var(--card-bg);
     color: var(--text);
+    border-color: var(--border-color);
 }
 
+/* Table styles */
 body.dark-mode .table {
     color: var(--text);
+    border-color: var(--border-color);
 }
 
-body.dark-mode .form-control {
+body.dark-mode .table td,
+body.dark-mode .table th {
+    border-color: var(--border-color);
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text);
+}
+
+/* Form controls */
+body.dark-mode .form-control,
+body.dark-mode .form-select {
     background-color: #333;
     color: var(--text);
-    border-color: #444;
+    border-color: var(--border-color);
 }
 
-body.dark-mode .form-control:focus {
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
     background-color: #333;
     color: var(--text);
     border-color: var(--accent);
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
 }
 
-body.dark-mode .list-group-item {
-    background-color: var(--card-bg);
-    border-color: #444;
+/* Custom arrow color for select elements */
+body.dark-mode .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
+/* List group items */
+body.dark-mode .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text);
+}
+
+/* Buttons */
 body.dark-mode .btn-outline-primary {
     color: var(--accent);
     border-color: var(--accent);
@@ -46,4 +77,57 @@ body.dark-mode .btn-outline-primary {
 body.dark-mode .btn-outline-primary:hover {
     background-color: var(--accent);
     color: #fff;
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #444;
+    border-color: #444;
+}
+
+/* Focus states */
+body.dark-mode .btn:focus,
+body.dark-mode a:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+/* Progress bars */
+body.dark-mode .progress {
+    background-color: #333;
+}
+
+/* Text colors */
+body.dark-mode .text-muted {
+    color: #9ea7b0 !important;
+}
+
+body.dark-mode .text-success {
+    color: #28a745 !important;
+}
+
+body.dark-mode .text-danger {
+    color: #dc3545 !important;
+}
+
+/* Badge colors */
+body.dark-mode .badge.bg-success {
+    background-color: #28a745 !important;
+}
+
+body.dark-mode .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+/* Chart adjustments for dark mode */
+body.dark-mode .chart-wrapper {
+    background-color: var(--card-bg);
+}
+
+body.dark-mode canvas {
+    filter: brightness(0.9);
 }
