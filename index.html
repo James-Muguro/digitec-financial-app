@@ -1,165 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digitec Financial App</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitec Financial App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="header sticky">
-    <div class="menu-icon" onclick="showToast('Menu clicked')">☰</div>
-    <h1>Transform Your Finances with Digitec</h1>
-    <div class="settings-icon" onclick="showToast('Settings clicked')">⚙</div>
-    <button id="toggleDarkMode" title="Toggle dark mode">🌓</button>
-  </header>
+    <div class="d-flex">
+        <nav id="sidebar" class="bg-dark text-white">
+            <div class="sidebar-header">
+                <h3>Digitec</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#" data-target="dashboard"><span class="material-icons">dashboard</span> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" data-target="wallets"><span class="material-icons">account_balance_wallet</span> Wallets</a>
+                </li>
+                <li>
+                    <a href="#" data-target="investments"><span class="material-icons">trending_up</span> Investments</a>
+                </li>
+                <li>
+                    <a href="#" data-target="payments"><span class="material-icons">payment</span> Payments</a>
+                </li>
+                <li>
+                    <a href="#" data-target="history"><span class="material-icons">history</span> History</a>
+                </li>
+            </ul>
+        </nav>
 
-  <main class="container">
-    <section class="greeting" data-animate>
-      Welcome to Digitec - Your gateway to leading financial solutions. Seamlessly manage your accounts with Mint, track transactions easily with YNAB, control your budget using EveryDollar, grow your wealth via Empower, enjoy secure digital wallets with Revolut, and manage your assets efficiently through SoFi.
-    </section>
+        <div id="content" class="p-4">
+            <main id="dashboard" class="page-content">
+                <h2>Dashboard</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Balance</h5>
+                                <p class="card-text fs-4">$54,300.50</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Investments</h5>
+                                <p class="card-text fs-4">$25,000.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div classs="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Liabilities</h5>
+                                <p class="card-text fs-4">$5,000.00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Portfolio Performance</h5>
+                                <canvas id="portfolioChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
-    <section class="dashboard">
-      <div class="card" data-animate>
-        <h2>Manage Your Accounts</h2>
-        <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" />
-        <p>Keep track of your balances effortlessly with <strong>Mint</strong>, the trusted platform for personal finance management.</p>
-        <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer">
-          <button>Sign Up Now</button>
-        </a>
-      </div>
+            <main id="wallets" class="page-content d-none">
+                <h2>Wallets</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Primary Account</h5>
+                                <p class="card-text fs-4">$15,300.50</p>
+                                <button class="btn btn-primary">Details</button>
+                                <button class="btn btn-secondary">Transfer</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Savings Wallet</h5>
+                                <p class="card-text fs-4">$14,000.00</p>
+                                <button class="btn btn-primary">Details</button>
+                                <button class="btn btn-secondary">Transfer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
-      <div class="card" data-animate>
-        <h2>Stay Informed with Transactions</h2>
-        <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" />
-        <p>Track all your spending and income with <strong>YNAB (You Need A Budget)</strong>, giving you control over your money flow.</p>
-        <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer">
-          <button>Explore YNAB</button>
-        </a>
-      </div>
+            <main id="investments" class="page-content d-none">
+                <h2>Investments</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Asset Allocation</h5>
+                                <canvas id="assetAllocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Holdings</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr><td>Tech Stocks</td><td>$15,000</td></tr>
+                                        <tr><td>Crypto</td><td>$5,000</td></tr>
+                                        <tr><td>Real Estate</td><td>$5,000</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
-      <div class="card" data-animate>
-        <h2>Budgeting Made Easy</h2>
-        <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" />
-        <p>Create and manage your budget efficiently with <strong>EveryDollar</strong>, the simple budgeting tool designed for you.</p>
-        <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer">
-          <button>Start Budgeting</button>
-        </a>
-      </div>
+            <main id="payments" class="page-content d-none">
+                <h2>Payments</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Send Money</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient" class="form-label">Recipient</label>
+                                <input type="text" class="form-control" id="recipient" placeholder="Enter name or email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="amount" placeholder="$0.00">
+                            </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Note</label>
+                                <textarea class="form-control" id="note" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </main>
 
-      <div class="card" data-animate>
-        <h2>Grow Your Wealth</h2>
-        <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" />
-        <p>Invest smarter with <strong>Empower</strong>, your digital wealth-building partner.</p>
-        <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer">
-          <button>Invest Now</button>
-        </a>
-      </div>
-
-      <div class="card" data-animate>
-        <h2>Secure Digital Wallets</h2>
-        <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" />
-        <p>Manage your money on the go with <strong>Revolut</strong>, offering secure and instant payment solutions.</p>
-        <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">
-          <button>Use Revolut</button>
-        </a>
-      </div>
-
-      <div class="card" data-animate>
-        <h2>Financial Asset Management</h2>
-        <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" />
-        <p>Take control of your financial assets with <strong>SoFi</strong>, the all-in-one finance app.</p>
-        <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer">
-          <button>Manage Assets</button>
-        </a>
-      </div>
-
-      <!-- Partners card with logos and buttons -->
-      <div class="card partners-card" data-animate>
-        <h2>Our Partners</h2>
-        <div class="partners-logos">
-          <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://mint.intuit.com/mint-static-hp-resources/intuit-logo-super-blue.svg" alt="Mint Logo" />
-          </a>
-          <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://sm.pcmag.com/pcmag_uk/review/y/ynab/ynab_3xj1.jpg" alt="YNAB Logo" />
-          </a>
-          <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.ramseysolutions.net/daveramsey.com/media/everydollar/2022/microsite/logo.svg" alt="EveryDollar Logo" />
-          </a>
-          <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://www.empower.com/themes/custom/empulsify/assets/images/nav-logos/WhiteLogoStacked.svg" alt="Empower Logo" />
-          </a>
-          <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">
-            <img src="https://investlithuania.com/wp-content/uploads/Revolut.svg" alt="Revolut Logo" />
-          </a>
-          <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer">
-            <img src="https://d32ijn7u0aqfv4.cloudfront.net/git/svgs/sofi-logo.svg" alt="SoFi Logo" />
-          </a>
+            <main id="history" class="page-content d-none">
+                <h2>Transaction History</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2025-10-27</td>
+                                    <td>Payment to John Doe</td>
+                                    <td>Payment</td>
+                                    <td>-$50.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2025-10-26</td>
+                                    <td>Transfer from Savings</td>
+                                    <td>Transfer</td>
+                                    <td>+$500.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2025-10-25</td>
+                                    <td>Stock Purchase: AAPL</td>
+                                    <td>Investment</td>
+                                    <td>-$1000.00</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2025-10-24</td>
+                                    <td>Payment Request from Jane</td>
+                                    <td>Payment</td>
+                                    <td>+$20.00</td>
+                                    <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="partners-buttons">
-          <a href="https://mint.intuit.com" target="_blank" rel="noopener noreferrer"><button>Mint</button></a>
-          <a href="https://www.youneedabudget.com" target="_blank" rel="noopener noreferrer"><button>YNAB</button></a>
-          <a href="https://www.ramseysolutions.com/ramseyplus/everydollar" target="_blank" rel="noopener noreferrer"><button>EveryDollar</button></a>
-          <a href="https://www.empower.com" target="_blank" rel="noopener noreferrer"><button>Empower</button></a>
-          <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer"><button>Revolut</button></a>
-          <a href="https://www.sofi.com/invest/" target="_blank" rel="noopener noreferrer"><button>SoFi</button></a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer" data-animate>
-    <div>
-      <h2>Mission</h2>
-      <p>To provide innovative financial solutions that are accessible, efficient, and secure.</p>
     </div>
-    <div>
-      <h2>Vision</h2>
-      <p>Become a leader in the fintech space by focusing on innovation in technology, customer-centric approach, and value creation for our shareholders and employees.</p>
-    </div>
-    <div>
-      <h2>Contact Us</h2>
-      <form id="contactForm">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="request" rows="4" placeholder="Request/Complaint/Comment" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </footer>
 
-  <div id="toast" class="toast"></div>
-
-  <script>
-    // Dark mode toggle
-    const toggleDarkModeBtn = document.getElementById('toggleDarkMode');
-    toggleDarkModeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-    });
-
-    // Toast notification function
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-
-    // Scroll animations (basic)
-    const animatedElements = document.querySelectorAll('[data-animate]');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    animatedElements.forEach(el => observer.observe(el));
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

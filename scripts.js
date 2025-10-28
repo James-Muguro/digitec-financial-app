@@ -1,80 +1,66 @@
-// Handle form submission
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('#sidebar a');
+    const pages = document.querySelectorAll('.page-content');
 
-  const formData = {
-    name: this.name.value,
-    email: this.email.value,
-    request: this.request.value
-  };
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
 
-  fetch('/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  })
-    .then(response => response.text())
-    .then(data => {
-      showToast(data);
-      this.reset();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      showToast('An error occurred while submitting your request.');
+            document.querySelector('#sidebar .active').classList.remove('active');
+            this.parentElement.classList.add('active');
+
+            const targetId = this.getAttribute('data-target');
+
+            pages.forEach(page => {
+                if (page.id === targetId) {
+                    page.classList.remove('d-none');
+                } else {
+                    page.classList.add('d-none');
+                }
+            });
+        });
+    });
+
+    // Chart.js Portfolio Chart
+    const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+    const portfolioChart = new Chart(portfolioCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            datasets: [{
+                label: 'Portfolio Value',
+                data: [20000, 21000, 20500, 22000, 23000, 22500, 24000],
+                backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 2,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    // Asset Allocation Chart
+    const assetCtx = document.getElementById('assetAllocationChart').getContext('2d');
+    const assetAllocationChart = new Chart(assetCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Tech Stocks', 'Crypto', 'Real Estate'],
+            datasets: [{
+                data: [15000, 5000, 5000],
+                backgroundColor: ['#007bff', '#17a2b8', '#28a745'],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
     });
 });
-
-// Default to dark mode on first visit
-if (localStorage.getItem('darkMode') === null) {
-  localStorage.setItem('darkMode', 'true');
-}
-
-const toggleButton = document.getElementById('toggleDarkMode');
-const isDark = localStorage.getItem('darkMode') === 'true';
-
-if (isDark) {
-  document.body.classList.add('dark-mode');
-  toggleButton.textContent = '🌙';
-} else {
-  toggleButton.textContent = '☀️';
-}
-
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  const darkModeEnabled = document.body.classList.contains('dark-mode');
-  toggleButton.textContent = darkModeEnabled ? '🌙' : '☀️';
-  localStorage.setItem('darkMode', darkModeEnabled);
-});
-
-// Toast notification with animation
-function showToast(message) {
-  let toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    toast.classList.add('show');
-  });
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-    toast.addEventListener('transitionend', () => toast.remove());
-  }, 3000);
-}
-
-// Scroll animations
-const animatedElements = document.querySelectorAll('[data-animate]');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-    }
-  });
-}, {
-  threshold: 0.15
-});
-
-animatedElements.forEach(el => observer.observe(el));
