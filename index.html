@@ -10,13 +10,13 @@
 </head>
 <body>
     <div class="d-flex">
-        <nav id="sidebar" class="bg-dark text-white">
+        <nav id="sidebar" class="bg-dark text-white" role="navigation" aria-label="Main navigation">
             <div class="sidebar-header">
                 <h3>Digitec</h3>
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#" data-target="dashboard"><span class="material-icons">dashboard</span> Dashboard</a>
+                    <a href="#" data-target="dashboard" aria-current="page"><span class="material-icons">dashboard</span> Dashboard</a>
                 </li>
                 <li>
                     <a href="#" data-target="wallets"><span class="material-icons">account_balance_wallet</span> Wallets</a>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <div classs="col-md-4">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Liabilities</h5>
@@ -67,14 +67,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Portfolio Performance</h5>
-                                <canvas id="portfolioChart"></canvas>
+                                <div class="chart-wrapper" style="height:260px; min-height:260px;">
+                                    <canvas id="portfolioChart" height="260" style="display:block; width:100%; height:100%;"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
 
-            <main id="wallets" class="page-content d-none">
+            <main id="wallets" class="page-content d-none" aria-hidden="true">
                 <h2>Wallets</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -100,14 +102,16 @@
                 </div>
             </main>
 
-            <main id="investments" class="page-content d-none">
+            <main id="investments" class="page-content d-none" aria-hidden="true">
                 <h2>Investments</h2>
                 <div class="row">
                     <div class="col-md-7">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Asset Allocation</h5>
-                                <canvas id="assetAllocationChart"></canvas>
+                                <div class="chart-wrapper" style="height:260px; min-height:260px;">
+                                    <canvas id="assetAllocationChart" height="260" style="display:block; width:100%; height:100%;"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +132,7 @@
                 </div>
             </main>
 
-            <main id="payments" class="page-content d-none">
+            <main id="payments" class="page-content d-none" aria-hidden="true">
                 <h2>Payments</h2>
                 <div class="card">
                     <div class="card-body">
@@ -152,7 +156,7 @@
                 </div>
             </main>
 
-            <main id="history" class="page-content d-none">
+            <main id="history" class="page-content d-none" aria-hidden="true">
                 <h2>Transaction History</h2>
                 <div class="card">
                     <div class="card-body">
